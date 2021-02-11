@@ -1,38 +1,67 @@
-.App {
-  text-align: center;
+.Header{
+  background: orange;
+  padding: 1rem;
+  border-radius: 10px;
+  color:white;
+  font-size: 3em;
+}
+.Aside{
+  background: orange;
+  padding: 1rem;
+  font-size: 2em;
+  color:rgb(40, 40, 230);
+  border-radius: 10px;
+}
+.Footer{
+  background-color: orange;
+  padding: 1rem;
+  color:white;
+  font-size: 3em;
+  border-radius: 10px;
+}
+.Article{
+  font-size: 2em;
+  background: orange;
+  padding: 1rem;
+  border-radius: 10px;
+}
+.Login{
+  color:white
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.btnInMessage{
+  height:50px;
+}
+.badge{
+  background: #0083D3;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.Link{
+  color:#0D6EFD;
+  text-decoration: none;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+a .Link:focus{
+  color:white
 }
-
-.App-link {
-  color: #61dafb;
+.Link:hover{
+  color:rgb(0, 162, 255);
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.Link:active{
+  color:blue
 }
+.LinkActive{
+  color:orange
+}
+.DoBlack{
+  color:black;
+}
+.likeBg{
+  background:red;
+}
+.right{float:right}
+.left{float:left}
+::selection{
+  background: orange;
+  color:white;
+}
+summary{outline:none}
