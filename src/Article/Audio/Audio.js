@@ -5,7 +5,7 @@ import { requiredField } from "../../Validates/ValidateForText";
 
 
 let Audio=(props)=>{
-    
+
     let [addMode,setMode]=useState(false)
     let changeMode=()=>{
         if(addMode){
@@ -26,8 +26,8 @@ let Audio=(props)=>{
                 :
                 <span className="Link">Add Music</span>}
                 <div className="ml-1">
-                <button className={addMode ? 
-                    "btn btn-close btn-outline-danger" 
+                <button className={addMode ?
+                    "btn btn-close btn-outline-danger"
                     :"btn btn-outline-success"}>
                     {!addMode && "+"}
                 </button>
@@ -50,7 +50,7 @@ let AudioForm=(props)=>{
     return<form onSubmit={props.handleSubmit} className="Login">
         <div className="d-flex">
             Name Music:
-            <Field component={Input} validate={[requiredField]} 
+            <Field component={Input} validate={[requiredField]}
             name={"nameMusic"} placeholder={"..."}/>
         </div>
         <div className="d-flex">
@@ -60,11 +60,13 @@ let AudioForm=(props)=>{
         </div>
         <div className="d-flex">
             URL image:
-            <Field component={Input} name={"imgURL"} placeholder={"..."}/>
+            <Field component={Input} validate={[requiredField]}
+            name={"imgURL"} placeholder={"..."}/>
         </div>
         <div className="d-flex">
             URL music:
-            <Field component={Input} name={"musicURL"} placeholder={"..."}/>
+            <Field component={Input} validate={[requiredField]} 
+            name={"musicURL"} placeholder={"..."}/>
         </div>
         <button className="w-100 btn btn-success">
             Add

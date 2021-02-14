@@ -1,7 +1,7 @@
 {
   "name": "my-app",
   "version": "0.1.0",
-  "homepage":"http://xtereo.github.io/ReactSocialApp2",
+  "homepage": "http://xtereo.github.io/ReactSocialApp2",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.8",
@@ -16,6 +16,7 @@
     "redux": "^4.0.5",
     "redux-form": "^8.3.7",
     "redux-thunk": "^2.3.0",
+    "typescript": "^4.1.5",
     "web-vitals": "^0.2.4"
   },
   "scripts": {
@@ -45,6 +46,10 @@
     ]
   },
   "devDependencies": {
+    "@types/react-dom": "^17.0.0",
+    "@types/react-redux": "^7.1.16",
+    "@types/react-router-dom": "^5.1.7",
+    "@types/redux-form": "^8.3.1",
     "gh-pages": "^3.1.0",
     "react-test-renderer": "^17.0.1"
   }

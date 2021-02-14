@@ -11,7 +11,7 @@ let maxLength=maxLengthCreator(100000)
 let Main=(props)=>{
 
     let userId=props.match.params.userId
-    
+
     useEffect(()=>{
         if(!userId){
             userId=props.myId
@@ -23,7 +23,7 @@ let Main=(props)=>{
         }
     },[])
 
-    let isMyPage=(!userId)  
+    let isMyPage=(!userId)
 
     let [isEditMode,setMode] = useState(false)
 
@@ -34,7 +34,7 @@ let Main=(props)=>{
         setMode(false)
         props.setStatusThunk(props.status)
     }
-          
+
     if(!props.Account){
         return <Loader />
     }
@@ -42,7 +42,7 @@ let Main=(props)=>{
     let posts=props.posts
     if(posts.length!=0){
         posts =posts.map(e=>{
-            return <Post message={e.message} img={e.img} 
+            return <Post message={e.message} img={e.img}
                 name={e.name} doLike={props.doLike}
                 like={e.like} ableLike={e.ableLike}
                 deletePost={props.deletePost}/>
@@ -57,7 +57,7 @@ let Main=(props)=>{
     let img=props.Account.photos.large;
     if (!img){
         img="https://aachibilyaev.com/upload/iblock/c97/c970fbccb33a1923f4af631366566199.png"
-    } 
+    }
 
     let doPost=(value)=>{
         props.doPost(value.text)
@@ -72,9 +72,9 @@ let Main=(props)=>{
                 <div className="card-body">
                 <h1 className="Link my-2">{name}
                     <div className="right">
-                        {isMyPage && 
+                        {isMyPage &&
                         <button className="btn btn-primary">
-                            <NavLink className="text-light Link" to="Edit">    
+                            <NavLink className="text-light Link" to="Edit">
                                 Edit Profile
                             </NavLink>
                         </button>
@@ -83,10 +83,10 @@ let Main=(props)=>{
                 </h1>
                     <div className="d-flex my-2">
                         Status:
-                        {isMyPage ? 
+                        {isMyPage ?
                             isEditMode ?
                             <div className="d-flex">
-                                <input autoFocus={true}  onBlur={toOff} onChange={changeStatus} 
+                                <input autoFocus={true}  onBlur={toOff} onChange={changeStatus}
                                 className="form-control" value={props.status}/>
                                 <button onClick={toOff} className="btn btn-success right">
                                     \/
@@ -120,10 +120,10 @@ let Main=(props)=>{
                                     Contacts
                                 </summary>
                                 <ul className="list-group">
-                            {Object.keys(props.Account.contacts).map(key=>{
+                            {props.Account.contacts && Object.keys(props.Account.contacts).map(key=>{
                                 return<li className="list-group-item" key={key}>{key}:
                                 <a className="Link" target="_blank" href={props.Account.contacts[key]}>
-                                {props.Account.contacts[key]}</a></li>   
+                                {props.Account.contacts[key]}</a></li>
                             })}
                                 </ul>
                             </details>
@@ -140,14 +140,14 @@ let Main=(props)=>{
           {posts}
         </div>
     </div>
-    
+
 }
 
-let MainForm=(props)=>{
+let MainForm=(props)=>{ 
     return<form onSubmit={props.handleSubmit}>
         <div className="card-body">
             What new?<button className="btn btn-success right">Post</button>
-            <Field name={"text"} component={Textarea} 
+            <Field name={"text"} component={Textarea}
              placeholder="..."
             validate={[requiredField,maxLength]}/>
         </div>

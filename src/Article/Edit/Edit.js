@@ -29,30 +29,30 @@ let Edit=({Account,successfullMessage, ...props})=>{
             <input onChange={onChangePhoto} type={"file"} className="form-control" />
             </div>
         </div>
-        {Account && <EditReduxForm isSaved={isSaved}
+        {Account.fullName && <EditReduxForm isSaved={isSaved}
         initialValues={Account} onSubmit={setEditAccount} Account={Account}/>}
     </div>
-}   
+}
 
 let EditForm=(props)=>{
     return<form onSubmit={props.handleSubmit}>
         <ul className="list-group">
-        <li className="list-group-item d-flex">   
-            Looking for a job: <Field className="form-check-input mt-1" type={"checkbox"} 
+        <li className="list-group-item d-flex">
+            Looking for a job: <Field className="form-check-input mt-1" type={"checkbox"}
             component={"input"} name={"lookingForAJob"}/>
         </li>
-        <li className="list-group-item d-flex">   
-            Description job: <Field component={Input} name={"lookingForAJobDescription"} 
+        <li className="list-group-item d-flex">
+            Description job: <Field component={Input} name={"lookingForAJobDescription"}
             validate={[requiredField]}/>
         </li>
-        <li className="list-group-item d-flex">   
+        <li className="list-group-item d-flex">
             About Me: <Field component={Input} name={"aboutMe"}
             validate={[requiredField]}/>
         </li>
-        <li className="list-group-item d-flex">   
+        <li className="list-group-item d-flex">
             fullName: <Field  component={Input} name={"fullName"} validate={[requiredField]}/>
         </li>
-        <li className="list-group-item d-flex">   
+        <li className="list-group-item d-flex">
             <details className="w-100">
                 <summary>Contacts</summary>
                 <ul className="list-group">

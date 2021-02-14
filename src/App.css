@@ -1,19 +1,16 @@
 .Header{
-  background: orange;
   padding: 1rem;
   border-radius: 10px;
   color:white;
-  font-size: 3em;
+  font-size: 2rem;
 }
 .Aside{
-  background: orange;
-  padding: 1rem;
-  font-size: 2em;
+  padding: 0.5rem;
+  font-size:2rem;
   color:rgb(40, 40, 230);
   border-radius: 10px;
 }
 .Footer{
-  background-color: orange;
   padding: 1rem;
   color:white;
   font-size: 3em;
@@ -21,9 +18,11 @@
 }
 .Article{
   font-size: 2em;
-  background: orange;
   padding: 1rem;
   border-radius: 10px;
+}
+.Article, .Footer, .Header, .Aside{
+  background:orange
 }
 .Login{
   color:white
