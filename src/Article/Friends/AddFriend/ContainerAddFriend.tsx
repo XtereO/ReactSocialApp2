@@ -13,8 +13,8 @@ let AddFriendAPIHoocks:React.FC<PropsType>=(props)=>{
     useEffect(()=>{
         requestFriends()
     },[])
-    let requestFriends=()=>{
-        props.requestFriendsThunk(props.curPage)
+    let requestFriends=(term:string="")=>{
+        props.requestFriendsThunk(props.curPage,term)
     }
 
     let changePage=(page:any):void=>{ //Html element
@@ -99,7 +99,7 @@ type MDTPType={
   setCountPage:(count:number)=>void
   doFollowThunk:(id:number)=>void
   doUnFollowThunk:(id:number)=>void
-  requestFriendsThunk:(page:number)=>void
+  requestFriendsThunk:(page:number,term?:string)=>void
 }
 type OwnPropsType={}
 let mapStateToProps=(state:AppStateType):MSTPType=>{

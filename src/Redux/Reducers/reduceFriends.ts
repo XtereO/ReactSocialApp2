@@ -1,23 +1,73 @@
+import { addFriendPage } from "../../API/API";
+import { ThunkAction } from "redux-thunk";
+import { AppStateType } from "../Redux";
+let Get_Friends:"reduceFriends/getFriends"="reduceFriends/getFriends"
+let Remove_Friends:"reduceFrieds/RemoveFriends"="reduceFrieds/RemoveFriends"
+
+type ThunkType=ThunkAction<Promise<void>,AppStateType,unknown,ActionType>
 
 export type FriendType={
-  name:string,
-  discription:string,
-  img:string
+    id:number
+    name:string
+    status:string | null
+    photos:{
+        small:string | null
+        large:string | null
+    }
+    followed:boolean
 }
 let initialState={
     Property:{
         friendsData:[
-            {name:"Ivan",discription:"Live in Moscow",img:"https://yt3.ggpht.com/a/AATXAJxGTeRSzkZFyXYGW-1iXZQMQfq2pmBMcEnUlvXU=s900-c-k-c0xffffffff-no-rj-mo"},
-            {name:"Max",discription:"Live in London",img:"https://yt3.ggpht.com/a/AATXAJy5DXUbMMJvKhQ7ZE0gmrlXZInoEbb2bXpJlCAp=s900-c-k-c0xffffffff-no-rj-mo"},
-            {name:"Alex",discription:"Live in USA",img:"https://im0-tub-ru.yandex.net/i?id=27284d36a7fdeca06ad38512f989c629&n=13"}
         ] as Array<FriendType>
     }
 }
 
 export type InitialStateType=typeof initialState
+type ActionType=GetFriendsType | RemoveFriendsType
 
-let reduceFriends=(state=initialState,action:any):InitialStateType=>{
-    return state
+let reduceFriends=(state=initialState,action:ActionType):InitialStateType=>{
+    switch(action.type){
+        case Get_Friends:
+            return{...state,Property:
+                {friendsData:[...action.users]}}
+        case Remove_Friends:
+            return{...state,Property:
+                {friendsData:state.Property.friendsData.filter(f=>f.id!=action.id)}}
+        default:
+            return state
+    }
+}
+
+type RemoveFriendsType={
+    id:number
+    type:typeof Remove_Friends
+}
+let removeFriends=(id:number):RemoveFriendsType=>{
+    return{
+        type:Remove_Friends,
+        id
+    }
+}
+type GetFriendsType={
+   users:Array<FriendType>
+   type:typeof Get_Friends 
+}
+let getFriends=(users:Array<FriendType>):GetFriendsType=>{
+    return{
+        type:Get_Friends,
+        users
+    }
+}
+export let getFriendsThunk=(term:string=""):ThunkType=>async (dispatch:any)=>{
+    let response= await addFriendPage.requestRealFriends(term)
+
+    dispatch(getFriends(response.data.items))
+}
+export let removeFriendsThunk=(id:number):ThunkType=>async (dispatch:any)=>{
+    let response= await addFriendPage.doFollow(id)
+
+    dispatch(removeFriends(id))
 }
 
 export default reduceFriends

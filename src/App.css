@@ -25,7 +25,8 @@
   background:orange
 }
 .Login{
-  color:white
+  color:white;
+  display: grid;justify-items: center;text-align: center;
 }
 
 .btnInMessage{
@@ -59,8 +60,4 @@ a .Link:focus{
 }
 .right{float:right}
 .left{float:left}
-::selection{
-  background: orange;
-  color:white;
-}
 summary{outline:none}

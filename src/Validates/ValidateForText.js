@@ -3,7 +3,7 @@
 export let requiredField=value=>{
     if(value) return undefined
 
-    return "Field is required"
+    return "required"
 }
 
 export let maxLengthCreator=(maxLengtn)=>(value)=>{

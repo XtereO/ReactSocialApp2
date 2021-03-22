@@ -10,6 +10,7 @@ let set_Count_Page:"addFriend/setCountPageAC"="addFriend/setCountPageAC"
 let set_Fetching:"addFriend/setFetching"="addFriend/setFetching"
 let set_Button_Disabled:"addFriend/buttonDisabled"="addFriend/buttonDisabled"
 let set_Progress:"addFriend/isProgress"="addFriend/isProgress"
+let set_Term:"addFriend/SetTerm"="addFriend/SetTerm"
 
 type ThunkType=ThunkAction<Promise<void>, AppStateType, unknown, ActionType>
 
@@ -19,17 +20,18 @@ let initialState={
         ]as any, //Users which show on the page
         curPage:1 as number,
         _totalCount:0 as number,
-        _countAcOnPage:1000 as number,  //Count Account on Page
+        _countAcOnPage:100 as number,  //Count Account on Page
         countPage:0 as number,
         isFetching:false as boolean,
         followingInProgress:[] as Array<number>,
-        isProgress:false as boolean
+        isProgress:false as boolean,
+        term:"" as string
     }
 }
 
 type InititalStateType=typeof initialState
 type ActionType=ShowMoreType | DoFollowType | DoUnFollowType | ChangePageType | SetCountPageType |
-SetFetchingType | SetProgressType | SetButtonDisabledType
+SetFetchingType | SetProgressType | SetButtonDisabledType | SetTermType
 
 let reduceAddFriend=(state=initialState,action:ActionType):InititalStateType=>{
     let curState={...state,Property:{...state.Property}};
@@ -81,12 +83,24 @@ let reduceAddFriend=(state=initialState,action:ActionType):InititalStateType=>{
                 curState.Property.followingInProgress=curState.Property.followingInProgress.filter(e=>e!=action.id)
             }
             return curState
+        case set_Term:
+            return{...state,Property:{...state.Property,term:action.term}}
         default:
             return state
     }
 }
 
-export type ShowMoreType={
+type SetTermType={
+    type:typeof set_Term
+    term:string
+}
+let _SetTerm=(term:string):SetTermType=>{
+    return{
+        type:set_Term,
+        term
+    }
+}
+type ShowMoreType={
   type:typeof show_More,
   users:any
 }
@@ -190,9 +204,10 @@ export let doFollowThunk=(id:number):ThunkType=> async (dispatch:any)=>{
 export let doUnFollowThunk=(id:number):ThunkType=> async (dispatch:any)=>{
     doFollowDRY(dispatch,addFriendPage.doUnFollow,doUnFollow,id)
 }
-export let requestFriendsThunk=(page:number):ThunkType=> async (dispatch:any)=>{
+export let requestFriendsThunk=(page:number,term:string=""):ThunkType=> async (dispatch:any)=>{
         dispatch(setFetching(true))
-        let response=await addFriendPage.requestFriends(page)
+        dispatch(_SetTerm(term))
+        let response=await addFriendPage.requestFriends(page,term)
 
         dispatch(setCountPage(response.data.totalCount))
         dispatch(showMore(response.data.items))

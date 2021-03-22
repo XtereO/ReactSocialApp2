@@ -34,7 +34,11 @@ let Photo=(props)=>{
             </div>}
         </div>
         <div>
-            {editMode && <PhotoReduxForm onSubmit={AddPhoto}/>}
+            {editMode && 
+            <div>
+            <br />
+            <PhotoReduxForm onSubmit={AddPhoto}/>
+            </div>}
         </div>
         <br />
         <div className="row mx-2 my-2">

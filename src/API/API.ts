@@ -28,7 +28,7 @@ type DoUnFollowType={
     data: any
 }
 type ItemType={
-    name:number,
+    name:string,
     id: number
     photos: {
         small: null | string,
@@ -38,14 +38,6 @@ type ItemType={
     followed: boolean
 }
 type RequestFriendsType={
-    id:number
-    name:string
-    status:string
-    photos:{
-        small:string
-        large:string
-    }
-    followed:boolean
     totalCount:number
     items:Array<ItemType>
 }
@@ -56,8 +48,12 @@ export let addFriendPage={
     doUnFollow(id:number){
         return instance.post<DoUnFollowType>("follow/"+id)
     },
-    requestFriends(page:number){
-        return instance.get<RequestFriendsType>(`users?page=${page}`) 
+    requestFriends(page?:number,term?:string){
+        return instance.get<RequestFriendsType>(`users?
+        page=${page}&term=${term}&friend=false`) 
+    },
+    requestRealFriends(term?:string){
+        return instance.get<RequestFriendsType>(`users?friend=true&term=${term}`)
     }
 }
 

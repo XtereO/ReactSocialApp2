@@ -8,11 +8,7 @@ let Audio=(props)=>{
 
     let [addMode,setMode]=useState(false)
     let changeMode=()=>{
-        if(addMode){
-            setMode(false)
-        }else{
-            setMode(true)
-        }
+        setMode(!addMode)
     }
     let addAudio=(value)=>{
         props.addAudio(value.nameMusic,value.nameCompositor
@@ -35,7 +31,10 @@ let Audio=(props)=>{
             </div>
             <div>
             {addMode &&
+                <div>
+                <br />
                 <AudioReduxForm onSubmit={addAudio}/>
+                </div>
             }
             </div>
         </div>

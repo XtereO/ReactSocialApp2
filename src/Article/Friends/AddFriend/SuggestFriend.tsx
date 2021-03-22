@@ -6,7 +6,7 @@ import React from "react";
 type PropsType={
   id:number
   name:string
-  status:string
+  status:string | null
   photos:{
     small:string | null
     large:string | null

@@ -12,11 +12,7 @@ let AudioTemplate:React.FC<PropsType>=(props:PropsType)=>{
     return<div>
         <div className="card mt-2">
             <div className="row">
-                <div className="col-2">
-                    <img src={props.img} className="img rounded w-100"/>
-                </div>
-
-                <div className="col-10">
+                <div className="">
                     <div className="card-body">
                         <h1 className="Link">
                             {props.name}-{props.compositor}

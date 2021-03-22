@@ -21,7 +21,7 @@ let Pagination=({portionSize,...props})=>{
 
     //To understand where curPage
     let i=1
-    while(props.curPage >=portionSize*i){
+    while(props.curPage >portionSize*i){
         i++
     }
 

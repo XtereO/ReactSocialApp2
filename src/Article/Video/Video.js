@@ -16,22 +16,30 @@ let Video = (props) => {
         props.AddVideo(value.nameVideo,value.nameCompositor,value.urlVideo)
     }
     return <div>
-        <div className="right mb-2">
-            {editMode ? <div onClick={goOutEditMode}>
-                <span className="Link">Cancel</span>
+        <div className="right">
+            {editMode ?
+            <div onClick={goOutEditMode}>
+                <span className="Link">
+                    Cancel
+                </span>
                 <button className="btn btn-close btn-outline-danger">
                 </button>
             </div> :
-                <div onClick={toEditMode}>
-                    <span className="Link">Add Video</span>
-                    <button className="btn btn-outline-success">+
-            </button>
-                </div>}
+            <div onClick={toEditMode}>
+                <span className="Link">
+                    Add Video
+                </span>
+                <button className="btn btn-outline-success">+
+                </button>
+            </div>}
         </div>
+        <div>
         {editMode &&
-            <div className="mb-2">
+            <div >
+                <br />
                 <VideoReduxForm onSubmit={AddVideo}/>
             </div>}
+        </div>
         {props.videoData.length>0 ? [...props.videoData].reverse():
         <div className="card w-100" onClick={toEditMode}>
             <h1 className="text-primary" align="center">
@@ -55,11 +63,11 @@ let VideoForm = (props) => {
             URL video: <Field name={"urlVideo"}
             component={Input} validate={[requiredField]}/>
         </div>
-        <div>
+        
             <button className="w-100 btn btn-success">
                 Add
             </button>
-        </div>
+        
     </form>
 }
 let VideoReduxForm=reduxForm({form:"video"})(VideoForm)

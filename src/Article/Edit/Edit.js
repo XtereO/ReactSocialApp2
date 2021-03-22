@@ -23,12 +23,13 @@ let Edit=({Account,successfullMessage, ...props})=>{
             {isUpdatePhoto && "Photo have updated"}
             </div>
         </div>
-        <div className="text-light">
-            ChangePhoto:
-            <div className="right">
+        <div className="text-light row">
+            <div className="col-md-6">ChangePhoto:</div>
+            <div className="col-md-6">
             <input onChange={onChangePhoto} type={"file"} className="form-control" />
             </div>
         </div>
+        <div className="mt-1"></div>
         {Account.fullName && <EditReduxForm isSaved={isSaved}
         initialValues={Account} onSubmit={setEditAccount} Account={Account}/>}
     </div>
