@@ -6,13 +6,15 @@ type PropsType=AudioType & FuncType;
 
 let AudioTemplate:React.FC<PropsType>=(props:PropsType)=>{
     let deleteAudio=()=>{
-        debugger
         props.deleteAudio(props.id)
     }
     return<div>
         <div className="card mt-2">
             <div className="row">
-                <div className="">
+                <div className="col-md-2">
+                    <img className="w-100" src={props.img} />
+                </div>
+                <div className="col-md-10">
                     <div className="card-body">
                         <h1 className="Link">
                             {props.name}-{props.compositor}

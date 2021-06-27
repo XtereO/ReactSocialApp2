@@ -19,7 +19,9 @@ let AddFriend:React.FC<PropsType>=({usersData, ...props})=>{
         </div>
         <div className="right"><Pagination {...props} portionSize={5}  /></div>
         <br />
-        {usersData}
+        <div style={{height:'700px',overflowY:'scroll'}}>
+            {usersData}
+        </div>
         <button onClick={requestFriends} className="btn btn-success w-100">
             ShowMore
         </button>

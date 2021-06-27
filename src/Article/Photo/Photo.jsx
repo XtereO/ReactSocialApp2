@@ -42,7 +42,7 @@ let Photo=(props)=>{
         </div>
         <br />
         <div className="row mx-2 my-2">
-            {props.photoData}
+            {[...props.photoData].reverse()}
         </div>
     </div>
 }

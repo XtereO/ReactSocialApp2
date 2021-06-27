@@ -8,6 +8,7 @@ import React from "react";
 import ContainerHeader from "./Header/ContainerHeader";
 import Aside from "./Aside/Aside";
 import Footer from "./Footer/Footer";
+import withCheckAuth from './HOCS/withCheckAuth';
 
 import ContainerLogin from "./Login/ContainerLogin";
 
@@ -24,6 +25,7 @@ const ContainerVideo=React.lazy(()=>import("./Article/Video/ContainerVideo"))
 const ContainerPhoto=React.lazy(()=>import("./Article/Photo/ContainerPhoto"))
 const ContainerAddFriend=React.lazy(()=>import("./Article/Friends/AddFriend/ContainerAddFriend"))
 const ContainerEdit=React.lazy(()=>import("./Article/Edit/ContainerEdit"))
+const GlobalChat=React.lazy(()=>import('./Article/GlobalChat/GlobalChat'))
 
 class App extends React.Component {
   componentDidMount(){
@@ -52,7 +54,7 @@ class App extends React.Component {
   if(!this.props.isInit){
     return <Loader/>
   }
-  return<div>
+  return<div style={{overflowX:"hidden"}}>
       <ContainerHeader toOff={this.toOff} 
       toActive={this.toActive}
       show={this.state.show}/>
@@ -75,6 +77,7 @@ class App extends React.Component {
             <Route path="/AddFriend" render={()=>{return withSuspense(ContainerAddFriend)}}/>
             <Route path="/Edit" render={()=>{return withSuspense(ContainerEdit)}}/>
             <Route path="/Login" render={()=>{return <ContainerLogin/>}}/>
+            <Route path="/GlobalChat" render={()=>{return withSuspense(withCheckAuth(GlobalChat))}} />
             <Route path="*" render={()=>{return <Redirect to="/Main"/>}}/>
           </Switch>
         </div>

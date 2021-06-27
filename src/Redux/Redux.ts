@@ -12,6 +12,7 @@ import reduceEdit from "./Reducers/reduceEdit";
 import thunkMiddleware from "redux-thunk";
 import { reducer as formReducer } from "redux-form";
 import reduceApp from "./Reducers/reduceApp";
+import { reduceChat } from "./Reducers/chatReducer";
 
 //combineReducers- function which do object for state
 let rootReducer=combineReducers({
@@ -26,7 +27,8 @@ let rootReducer=combineReducers({
     menu:reduceMenu,
     form:formReducer,
     app:reduceApp,
-    editPage:reduceEdit
+    editPage:reduceEdit,
+    chat:reduceChat
 })
 
 type RootReducerType=typeof rootReducer;

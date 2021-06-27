@@ -34,7 +34,7 @@ let initialState={
           fullName:null,
           contacts:null
         } as AccountType,
-        text:"...I" as string | null,
+        text:"I ..." as string | null,
         posts:[] as Array<PostType>,
         status:"..." as string
     }
@@ -47,21 +47,22 @@ type ActionType=ChangeTextType | DoPostType | DoLikeType | SetAccountType
 let reduceMain=(state=initialState,action:ActionType):InitialStateType=>{
     let curState={...state};
     curState.Property={...state.Property};
-    if(action.type===set_Status){
+    switch(action.type){
+    case set_Status:
         curState.Property.status=action.status
         return curState
-    }
-    if(action.type==change_Status){
+    
+    case change_Status:
         curState.Property.status=state.Property.status;
         curState.Property.status=action.curText;
         return curState;
-    }
-    if(action.type==change_Text){
+
+    case change_Text:
         curState.Property.text=state.Property.text;
         curState.Property.text=action.curText;
         return curState
-    }
-    if(action.type==do_Post){
+
+    case do_Post:
         curState.Property.posts=[...state.Property.posts]
         curState.Property.posts.push(
             {name:curState.Property.Account.fullName,
@@ -71,8 +72,8 @@ let reduceMain=(state=initialState,action:ActionType):InitialStateType=>{
         )
         curState.Property.text=" ";
         return curState;
-    }
-    if(action.type==do_Like){
+    
+    case do_Like:
         curState.Property.posts=[...state.Property.posts]
         let posts=[...state.Property.posts]
         for(let key in posts){
@@ -88,19 +89,20 @@ let reduceMain=(state=initialState,action:ActionType):InitialStateType=>{
             }
         }
         return curState
-    }
-    if(action.type==set_Account){
+    
+    case set_Account:
         curState.Property.Account={...state.Property.Account}
         curState.Property.Account=action.data
         return curState
-    }
-    if(action.type==delete_Post){
+    
+    case delete_Post:
         curState.Property.posts=[...state.Property.posts]
         let newPosts=curState.Property.posts.filter(p=>((action.like!=p.like) || (action.message!=p.message) || (action.name!=p.name) ))
         curState.Property.posts=newPosts
         return curState;
+    
+        default:return state
     }
-    return state
 }
 
 export type ChangeStatusType={
